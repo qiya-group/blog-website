@@ -4,7 +4,7 @@ spring:
   application:
     name: blog-server
   datasource:
-    url: jdbc:mysql://cdb-0fs4k4rm.cd.tencentcdb.com:10018/blog?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+    url: /blog?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
     username: root
     password: guanabc123
     driver-class-name: com.mysql.cj.jdbc.Driver
