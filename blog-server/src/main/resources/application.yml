@@ -28,7 +28,7 @@ spring:
     connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
 
 #  redis:
-#    host: 129.28.14.204
+#    host:
 #    port: 6379
 #    password: guanabc123
 #    jedis:
