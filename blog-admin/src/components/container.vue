@@ -1,5 +1,5 @@
 <template>
-  <el-container id = "page-container" :style="{ height: height }">
+  <el-container id="page-container" :style="{ height: height }">
     <el-aside width="200px">
       <PageMenu />
     </el-aside>
@@ -29,11 +29,16 @@ export default {
   computed: {
     height() {
       return `${window.innerHeight}px`; // 动态计算宽度，避免超出产生滚动条
-    }
+    },
   },
 };
 </script>
 
 
 <style scoped>
+.el-header {
+  background-color: #b3c0d1;
+  color: var(--el-text-color-primary);
+  line-height: 60px;
+}
 </style>

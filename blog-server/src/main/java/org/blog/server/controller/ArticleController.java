@@ -31,8 +31,8 @@ public class ArticleController {
         return responseDTO;
     }
 
-    @PostMapping("/selectAllArticles")
-    public ResponseDTO<List<Article>> selectAllArticles(@Validated @RequestBody PageDTO pageDTO) {
-
-    }
+//    @PostMapping("/selectAllArticles")
+//    public ResponseDTO<List<Article>> selectAllArticles(@Validated @RequestBody PageDTO pageDTO) {
+//
+//    }
 }

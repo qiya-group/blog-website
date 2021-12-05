@@ -1,7 +1,5 @@
 import home from '../pages/home.vue'
-import PageContainer from '../components/container.vue';
-
-const About = { template: '<div>About</div>' }
+import article from './article'
 
 const routes = [
     {
@@ -12,7 +10,7 @@ const routes = [
         path: '/home',
         component: home,
     },
-    { path: '/about', component: About },
+    ...article,
 ]
 
 export default routes;

@@ -28,6 +28,10 @@ public class Article {
      */
     private String content;
     /**
+     * 文章状态
+     */
+    private Integer status;
+    /**
      * 访问次数
      */
     private Integer viewTime;
@@ -98,5 +102,13 @@ public class Article {
 
     public void setTag(String tag) {
         this.tag = tag;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 }
