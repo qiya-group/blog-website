@@ -9,9 +9,11 @@ public class PageDTO {
 
     private Integer size;
 
-    private String key;
+    private String key; // 暂时还不支持多条件搜索，所以key是存在的
 
     private String value;
+
+    private Integer order;
 
     public Integer getIndex() {
         return index;
@@ -43,5 +45,13 @@ public class PageDTO {
 
     public void setValue(String value) {
         this.value = value;
+    }
+
+    public Integer getOrder() {
+        return order;
+    }
+
+    public void setOrder(Integer order) {
+        this.order = order;
     }
 }

@@ -4,7 +4,7 @@ spring:
   application:
     name: blog-server
   datasource:
-    url: /blog?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://cdb-0fs4k4rm.cd.tencentcdb.com:10018/blog?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
     username: root
     password: guanabc123
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -28,7 +28,7 @@ spring:
     connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
 
 #  redis:
-#    host:
+#    host: 129.28.14.204
 #    port: 6379
 #    password: guanabc123
 #    jedis:

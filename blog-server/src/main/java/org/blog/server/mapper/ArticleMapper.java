@@ -1,6 +1,9 @@
 package org.blog.server.mapper;
 
+import org.blog.server.dto.PageDTO;
 import org.blog.server.entity.Article;
+
+import java.util.List;
 
 public interface ArticleMapper {
 
@@ -11,4 +14,6 @@ public interface ArticleMapper {
     Article selectByPrimaryKey(Integer id);
 
     int updateByPrimaryKey(Article record);
+
+    List<Article> selectAllArticles(String sql);
 }

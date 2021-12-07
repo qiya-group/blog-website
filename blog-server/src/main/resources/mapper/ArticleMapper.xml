@@ -44,4 +44,11 @@
       tag = #{tag,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+    <select id="selectAllArticles" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List" />
+        from article
+        ${sql}
+    </select>
 </mapper>
