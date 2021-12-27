@@ -1,4 +1,4 @@
-package org.blog.server.error;
+package org.blog.server.common.error;
 
 /**
  * SQL注入安全异常

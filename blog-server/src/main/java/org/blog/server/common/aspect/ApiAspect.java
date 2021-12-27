@@ -1,10 +1,11 @@
-package org.blog.server.aspect;
+package org.blog.server.common.aspect;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.blog.server.common.ControllerMapping;
+import org.blog.server.common.ControllerPool;
 import org.blog.server.common.MappingLoader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,8 +15,6 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.PrintWriter;
 import java.util.List;
 
 @Aspect
@@ -23,6 +22,7 @@ import java.util.List;
 public class ApiAspect {
 
     private final static Logger logger = LoggerFactory.getLogger(ApiAspect.class);
+    private final ControllerPool controllerPool = ControllerPool.getInstance();
 
     @Autowired
     private MappingLoader mappingLoader;
@@ -38,10 +38,9 @@ public class ApiAspect {
     public void doBeforeController(JoinPoint joinPoint) throws Exception {
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = attributes.getRequest();
-        HttpServletResponse response = attributes.getResponse();
         String url = request.getRequestURI();
         String role = request.getHeader("role");
-        ControllerMapping controllerMapping = this.mappingLoader.getAllUrl().get(url);
+        ControllerMapping controllerMapping = this.controllerPool.get(url);
         List<String> roles = this.mappingLoader.findApiAuths(controllerMapping);
         // 遍历角色权限
         for (String s : roles) {
@@ -49,7 +48,6 @@ public class ApiAspect {
                 throw new Exception("鉴权失败！");
             }
         }
-
         logger.info("鉴权通过！");
     }
 }

@@ -3,7 +3,7 @@ package org.blog.server.serviceImpl;
 import org.blog.server.common.SqlUtils;
 import org.blog.server.dto.PageDTO;
 import org.blog.server.entity.Article;
-import org.blog.server.error.SQLInjectException;
+import org.blog.server.common.error.SQLInjectException;
 import org.blog.server.mapper.ArticleMapper;
 import org.blog.server.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;

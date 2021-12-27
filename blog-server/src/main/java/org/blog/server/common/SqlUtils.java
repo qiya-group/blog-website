@@ -1,7 +1,7 @@
 package org.blog.server.common;
 
 import org.blog.server.dto.PageDTO;
-import org.blog.server.error.SQLInjectException;
+import org.blog.server.common.error.SQLInjectException;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

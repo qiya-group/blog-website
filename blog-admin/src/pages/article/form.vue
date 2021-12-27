@@ -23,6 +23,7 @@
 
 <script>
 import E from "wangeditor";
+import axios from "axios";
 
 export default {
   name: "ArticleForm",
@@ -35,6 +36,7 @@ export default {
         content: "",
         tag: "",
       },
+      data: 0,
     };
   },
   methods: {
@@ -45,6 +47,14 @@ export default {
     onSubmit() {
       // 编辑器赋值
       this.form.content = this.editor.txt.html();
+      axios
+      .post("/server/article/insert", {
+        article: this.form
+      })
+        .then((res) => {
+          this.data = [res.data.data];
+        })
+        .catch((err) => {});
       console.log(this.form)
     }
   },

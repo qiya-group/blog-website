@@ -1,15 +1,11 @@
 package org.blog.server.controller;
 
 import org.blog.server.common.Constant;
-import org.blog.server.common.ControllerMapping;
-import org.blog.server.common.MappingLoader;
-import org.blog.server.common.ResponseUtils;
-import org.blog.server.common.annotion.ApiAuth;
 import org.blog.server.dto.PageDTO;
 import org.blog.server.dto.ResponseDTO;
 import org.blog.server.entity.Article;
-import org.blog.server.error.ArticleException;
-import org.blog.server.error.SQLInjectException;
+import org.blog.server.common.error.ArticleException;
+import org.blog.server.common.error.SQLInjectException;
 import org.blog.server.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
@@ -17,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/article")
@@ -25,9 +20,6 @@ public class ArticleController {
 
     @Autowired
     private ArticleService articleService;
-
-    @Autowired
-    private MappingLoader mappingLoader;
 
     @GetMapping("/selectByPrimaryKey")
     public ResponseDTO<Article> selectByPrimaryKey(@Validated Integer id) throws ArticleException {
@@ -43,7 +35,7 @@ public class ArticleController {
         return responseDTO;
     }
 
-    @PostMapping("/selectAllArticles")
+    @GetMapping("/selectAllArticles")
     public ResponseDTO<List<Article>> selectAllArticles(@Validated @RequestBody PageDTO pageDTO) throws SQLInjectException {
         List<Article> articles = this.articleService.selectAllArticles(pageDTO);
         ResponseDTO<List<Article>> responseDTO = new ResponseDTO<>();
@@ -54,10 +46,19 @@ public class ArticleController {
         return responseDTO;
     }
 
-    @ResponseBody
-    @ApiAuth(role = {"admin", "user"})
-    @RequestMapping("/getAllUrl")
-    public Map<String, ControllerMapping>  getAllUrl() {
-        return this.mappingLoader.getAllUrl();
+    @PostMapping("/insert")
+    public ResponseDTO<Integer> insert(@Validated @RequestBody Article article) {
+        int result = this.articleService.insert(article);
+        ResponseDTO<Integer> responseDTO = new ResponseDTO<>();
+        responseDTO.setData(result);
+        responseDTO.setTime(new Date());
+        if (result > 0) {
+            responseDTO.setReCode(200);
+            responseDTO.setMessage(Constant.REQUEST_SUCCESS);
+        } else {
+            responseDTO.setReCode(400);
+            responseDTO.setMessage(Constant.REQUEST_ERROR);
+        }
+        return responseDTO;
     }
 }

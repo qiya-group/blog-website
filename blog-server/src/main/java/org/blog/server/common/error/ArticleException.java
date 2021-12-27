@@ -1,4 +1,4 @@
-package org.blog.server.error;
+package org.blog.server.common.error;
 
 /**
  * 文章异常

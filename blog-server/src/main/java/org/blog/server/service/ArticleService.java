@@ -2,7 +2,7 @@ package org.blog.server.service;
 
 import org.blog.server.dto.PageDTO;
 import org.blog.server.entity.Article;
-import org.blog.server.error.SQLInjectException;
+import org.blog.server.common.error.SQLInjectException;
 
 import java.util.List;
 
