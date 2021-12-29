@@ -45,11 +45,13 @@ export default {
       this.editor.create();
     },
     onSubmit() {
+
       // 编辑器赋值
       this.form.content = this.editor.txt.html();
-      axios
-      .post("/server/article/insert", {
-        article: this.form
+      axios.post("/server/article/insert", this.form, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
       })
         .then((res) => {
           this.data = [res.data.data];

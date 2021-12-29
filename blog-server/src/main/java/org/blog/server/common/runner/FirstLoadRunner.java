@@ -28,12 +28,12 @@ public class FirstLoadRunner implements CommandLineRunner {
     private final ControllerPool controllerPool = ControllerPool.getInstance();
 
     @Override
-    public void run(String... args) {
+    public void run(String... args) throws ClassNotFoundException {
         logger.info("Level1 Runner!");
         this.collectControllers();
     }
 
-    public void collectControllers() {
+    public void collectControllers() throws ClassNotFoundException {
         logger.info("start init collect controllers");
         // 获取springmvc处理器映射器组件对象 RequestMappingHandlerMapping无法直接注入
         RequestMappingHandlerMapping mapping = applicationContext.getBean(RequestMappingHandlerMapping.class);
@@ -47,12 +47,13 @@ public class FirstLoadRunner implements CommandLineRunner {
             assert p != null;
             for (String url : p.getPatterns()) {
                 ControllerMapping controllerMapping = new ControllerMapping();
-                controllerMapping.setController(method.getMethod().getDeclaringClass().getName());
-                controllerMapping.setMethod(method.getMethod().getName());
+                controllerMapping.setController(method.getMethod().getDeclaringClass());
+                controllerMapping.setMethod(method.getMethod());
                 this.controllerPool.put(url, controllerMapping);
-                logger.info(String.format("Url: %s | ControllerName: %s", url, controllerMapping.getMethod()));
             }
         }
+
+
         logger.info("collect controller finish!");
     }
 }

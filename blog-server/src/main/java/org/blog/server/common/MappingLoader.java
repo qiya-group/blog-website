@@ -14,8 +14,7 @@ public class MappingLoader {
     public List<String> findApiAuths(ControllerMapping controller) {
         List<String> auths = new LinkedList<>();
         try {
-            Class clazz = Class.forName(controller.getController());
-            Method method = clazz.getMethod(controller.getMethod());
+            Method method = controller.getMethod();
             boolean annotationPresent = method.isAnnotationPresent(ApiAuth.class);
             if (annotationPresent) {
                 // 获取自定义注解对象

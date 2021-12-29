@@ -1,24 +1,27 @@
 package org.blog.server.common;
 
+import java.lang.reflect.Method;
+
 public class ControllerMapping {
 
-    private String controller;
+    private Class controller;
 
-    private String method;
+    private Method method;
 
-    public String getController() {
+
+    public Class getController() {
         return controller;
     }
 
-    public void setController(String controller) {
+    public void setController(Class controller) {
         this.controller = controller;
     }
 
-    public String getMethod() {
+    public Method getMethod() {
         return method;
     }
 
-    public void setMethod(String method) {
+    public void setMethod(Method method) {
         this.method = method;
     }
 }

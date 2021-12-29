@@ -7,6 +7,8 @@ import org.blog.server.entity.Article;
 import org.blog.server.common.error.ArticleException;
 import org.blog.server.common.error.SQLInjectException;
 import org.blog.server.service.ArticleService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +19,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/article")
 public class ArticleController {
+
+    private final static Logger logger = LoggerFactory.getLogger(ArticleController.class);
 
     @Autowired
     private ArticleService articleService;
@@ -47,6 +51,7 @@ public class ArticleController {
     }
 
     @PostMapping("/insert")
+    @ResponseBody
     public ResponseDTO<Integer> insert(@Validated @RequestBody Article article) {
         int result = this.articleService.insert(article);
         ResponseDTO<Integer> responseDTO = new ResponseDTO<>();
