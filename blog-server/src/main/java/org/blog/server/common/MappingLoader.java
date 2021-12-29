@@ -19,9 +19,9 @@ public class MappingLoader {
             boolean annotationPresent = method.isAnnotationPresent(ApiAuth.class);
             if (annotationPresent) {
                 // 获取自定义注解对象
-                ApiAuth methodAnno = method.getAnnotation(ApiAuth.class);
+                ApiAuth methodAnnotation = method.getAnnotation(ApiAuth.class);
                 // 根据对象获取注解值
-                String[] roles = methodAnno.role();
+                String[] roles = methodAnnotation.role();
                 auths.addAll(Arrays.asList(roles));
                 return auths;
             }
