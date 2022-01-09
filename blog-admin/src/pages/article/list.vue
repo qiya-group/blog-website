@@ -100,7 +100,6 @@
 </template>
 
 <script>
-import axios from "axios";
 import { ref } from "vue";
 import { Search } from "@element-plus/icons";
 import { formatTime } from "../../common/util";
@@ -120,7 +119,7 @@ export default {
   methods: {
     initData() {
       axios
-        .get("/server/article/selectByPrimaryKey?id=1")
+        .get("/server/article/selectByPrimaryKey?id=2")
         .then((res) => {
           this.tableData = [res.data.data];
         })

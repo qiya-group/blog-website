@@ -13,7 +13,7 @@
         <result column="status" jdbcType="INTEGER" property="status" />
     </resultMap>
     <sql id="Base_Column_List">
-    id, 'key', title, subTitle, publishTime, content, viewTime, tag, status
+    id, `key`, title, subTitle, publishTime, content, viewTime, tag, status
   </sql>
     <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         select
@@ -26,7 +26,7 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
     <insert id="insert" parameterType="org.blog.server.entity.Article">
-    insert into article (id, 'key', title,
+    insert into article (id, `key`, title,
       subTitle, publishTime, content,
       viewTime, tag)
     values (#{id,jdbcType=INTEGER}, #{key,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR},
@@ -35,7 +35,7 @@
   </insert>
     <update id="updateByPrimaryKey" parameterType="org.blog.server.entity.Article">
     update article
-    set 'key' = #{key,jdbcType=VARCHAR},
+    set `key` = #{key,jdbcType=VARCHAR},
       title = #{title,jdbcType=VARCHAR},
       subTitle = #{subTitle,jdbcType=VARCHAR},
       publishTime = #{publishTime,jdbcType=TIMESTAMP},
